@@ -1,4 +1,6 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:picflix/widgets/BarUser.dart';
 import 'package:picflix/widgets/CardOverlayCover.dart';
@@ -14,9 +16,51 @@ class HomePage extends StatefulWidget {
 class HomePageWithState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xff121212),
+      ),
+    );
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.black,
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Color(0xff121212),
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        elevation: 0,
+        onTap: (int index) {},
+        currentIndex: 0,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(MdiIcons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Badge(
+              badgeColor: Color(0xffe42115),
+              shape: BadgeShape.circle,
+              badgeContent: Text('5'),
+              borderRadius: BorderRadius.circular(100),
+              child: Icon(MdiIcons.playBoxMultipleOutline),
+            ),
+            label: "Soon",
+          ),
+          BottomNavigationBarItem(
+            icon: Badge(
+              badgeColor: Color(0xff0070ea),
+              shape: BadgeShape.circle,
+              badgeContent: Text('1'),
+              borderRadius: BorderRadius.circular(100),
+              child: Icon(MdiIcons.downloadCircleOutline),
+            ),
+            label: "Downloads",
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Stack(
           children: [
