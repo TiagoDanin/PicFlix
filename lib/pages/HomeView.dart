@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:picflix/widgets/BarUser.dart';
 import 'package:picflix/widgets/CardOverlayCover.dart';
+import 'package:picflix/widgets/ListShowCard.dart';
 import 'package:picflix/widgets/MenuTop.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,56 +63,76 @@ class HomePageWithState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Stack(
+        child: Column(
           children: [
-            Container(
-              height: 500,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black, Colors.transparent],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
+            Stack(
+              children: [
+                Container(
+                  height: 500,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.black, Colors.transparent],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/cover/28.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                image: DecorationImage(
-                  image: AssetImage("assets/images/cover/28.jpg"),
-                  fit: BoxFit.cover,
+                Container(
+                  height: 500,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.black87, Colors.transparent, Colors.transparent],
+                      end: Alignment.bottomCenter,
+                      begin: Alignment.topCenter,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              height: 500,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black87, Colors.transparent, Colors.transparent],
-                  end: Alignment.bottomCenter,
-                  begin: Alignment.topCenter,
+                Container(
+                  height: 501,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.black87, Colors.black54, Colors.transparent, Colors.transparent],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              height: 501,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black87, Colors.black54, Colors.transparent, Colors.transparent],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 15,
+                  child: CardOverlayCover(),
                 ),
-              ),
+                SafeArea(
+                  child: Column(
+                    children: [
+                      BarUser(),
+                      MenuTop(),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 15,
-              child: CardOverlayCover(),
+            ListShowCard(
+              title: "Your List",
+              ids: ["01", "04", "26", "34", "31", "06", "07"],
             ),
-            SafeArea(
-              child: Column(
-                children: [
-                  BarUser(),
-                  MenuTop(),
-                ],
-              ),
+            ListShowCard(
+              title: "Trending Now",
+              ids: ["11", "29", "35", "07"],
             ),
+            ListShowCard(
+              title: "Top Picks for Tiago",
+              ids: ["18", "22"],
+            ),
+            ListShowCard(
+              title: "Because you watched Supernatural",
+              ids: ["17", "03", "05", "32"],
+            )
           ],
         ),
       ),
