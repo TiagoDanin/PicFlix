@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:picflix/widgets/BarUser.dart';
+import 'package:picflix/widgets/CardOverlayCover.dart';
+import 'package:picflix/widgets/MenuTop.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -8,39 +12,65 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageWithState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Title"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              height: 500,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.black, Colors.transparent],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                ),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/cover/28.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Container(
+              height: 500,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.black87, Colors.transparent, Colors.transparent],
+                  end: Alignment.bottomCenter,
+                  begin: Alignment.topCenter,
+                ),
+              ),
+            ),
+            Container(
+              height: 501,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.black87, Colors.black54, Colors.transparent, Colors.transparent],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 15,
+              child: CardOverlayCover(),
+            ),
+            SafeArea(
+              child: Column(
+                children: [
+                  BarUser(),
+                  MenuTop(),
+                ],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
